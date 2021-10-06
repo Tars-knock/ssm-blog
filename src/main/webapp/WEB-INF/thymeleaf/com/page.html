@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div th:fragment="page(pageInfo)">
+    <div class="clearfix">
+        <ul class="pagination m-b-5 pull-right">
+
+
+            <li th:if="${pageInfo.hasPreviousPage}">
+                <a th:href="@{'?page='+${pageInfo.prePage}}" aria-label="Previous" class="extend next">
+                    <i class="iconfont icon-arrowleft"></i>
+                </a>
+            </li>
+
+            <th:block th:each="nav : ${pageInfo.navigatepageNums}">
+                <li th:class="${nav==pageInfo.page}?'active disabled':''">
+                    <a th:href="@{'?page='+${nav}}" th:text="${nav}" class="page-number" th:class="${nav==pageInfo.page}?'current':''"></a>
+                </li>
+            </th:block>
+
+            <th:block th:if="${pageInfo.hasNextPage}">
+                <li>
+                    <a th:href="@{'?page='+${pageInfo.nextPage}}" aria-label="Next" class="extend next">
+                        &nbsp;<i class="iconfont icon-arrowright"></i>
+                    </a>
+                </li>
+            </th:block>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

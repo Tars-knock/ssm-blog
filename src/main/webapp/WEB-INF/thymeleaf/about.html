@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="76x76" th:href="@{/static/indexAndLogin/img/favicon.png}">
+    <link rel="icon" th:href="@{/static/indexAndLogin/img/favicon.png}">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+<!--    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
+    <meta name="theme-color" content="#2f4154">
+    <meta name="author" content="Tars-knock">
+    <meta name="keywords" content="技术笔记 日常随笔">
+    <title>关于 - Tars Blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css">
+<!--    <link rel="stylesheet" href="/lib/hint/hint.min.css">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+    <link rel="stylesheet" th:href="@{/static/indexAndLogin/css/main.css}">
+    <script id="fluid-configs">var Fluid = window.Fluid || {}, CONFIG = {
+        hostname: "www.tars-knock.cn",
+        root: "/",
+        version: "1.8.10",
+        typing: {enable: !0, typeSpeed: 70, cursorChar: "_", loop: !1},
+        anchorjs: {enable: !0, element: "h1,h2,h3,h4,h5,h6", placement: "right", visible: "hover", icon: ""},
+        progressbar: {enable: !0, height_px: 3, color: "#29d", options: {showSpinner: !1, trickleSpeed: 100}},
+        copy_btn: !0,
+        image_zoom: {enable: !0},
+        toc: {enable: !0, headingSelector: "h1,h2,h3,h4,h5,h6", collapseDepth: 0},
+        lazyload: {enable: !0, loading_img: "../static/indexAndLogin/img/loading.gif", onlypost: !1, offset_factor: 2},
+        web_analytics: {
+            baidu: "000c8623e418a244bb21d401c84cbfc3",
+            leancloud: {
+                app_id: "zldqPvhiQPhi7OHlqIQKsssf-gzGzoHsz",
+                app_key: "seqt5G6b8y8z6p0zo03uR31L",
+                server_url: "https://zldqpvhi.lc-cn-n1-shared.com"
+            }
+        }
+    }</script>
+    <script th:src="@{/static/indexAndLogin/js/utils.js}"></script>
+    <script th:src="@{/static/indexAndLogin/js/color-schema.js}"></script>
+</head>
+<body>
+<header style="height:60vh">
+    <div id="head" th:include="com/header :: common_head"></div>
+    <div class="banner" id="banner" parallax="true"
+         style="background:url(../static/indexAndLogin/img/ironman.jpg) no-repeat center center;background-size:cover">
+        <div class="full-bg-img">
+            <div class="mask flex-center" style="background-color:rgba(0,0,0,.3)">
+                <div class="page-header text-center fade-in-up"><span class="h2" id="subtitle" title="Who am I ?"></span></div>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="container nopadding-x-md">
+        <div class="py-5" id="board">
+            <div class="about-avatar"><img th:src="@{/static/shared/tars.jpg}" srcset="../static/indexAndLogin/img/loading.gif" lazyload class="img-fluid"
+                                           alt="avatar"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-10 m-auto">
+                        <div class="text-center">
+                            <div class="about-info">
+                                <div class="about-name">Tars</div>
+                                <div class="about-intro">本科渣渣/ 万金油/ 三脚猫</div>
+                                <div class="about-icons">
+                                    <a href="https://github.com/Tars-knock"
+                                        class="hint--bottom hint--rounded" aria-label="GitHub"
+                                        target="_blank">
+                                        <i class="iconfont icon-github-fill"
+                                        aria-hidden="true"></i>
+                                    </a>
+                                    <a href="mailto:sfly1344@163.com" class="hint--bottom hint--rounded"
+                                        aria-label="邮箱" target="_blank">
+                                        <i class="iconfont icon-mail"
+                                        aria-hidden="true"></i>
+                                    </a>
+                                    <a class="qr-trigger" target="_self">
+                                        <i class="iconfont icon-wechat-fill" aria-hidden="true"></i>
+                                        <img class="qr-img" th:src="@{/static/indexAndLogin/img/wechat.png}" srcset="../static/indexAndLogin/img/loading.gif" lazyload alt="qrcode"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <article class="about-content page-content mt-5">
+                            <div class="markdown-body">
+                                <blockquote><p>追求源于热爱</p></blockquote>
+                                <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330"
+                                        height="86" auto="0"
+                                        src="//music.163.com/outchain/player?type=2&id=1840381985&auto=1&height=66"></iframe>
+                                <h1 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h1>
+                                <ul>
+                                    <li>生活：02年臭弟弟，来自东百</li>
+                                    <li>爱好：coding/ 数码/ 滑板/ 听歌/ 看电影</li>
+                                </ul>
+                                <h1 id="初心"><a href="#初心" class="headerlink" title="初心"></a>初心</h1>
+                                <p>记录一点技术上 生活上值得记录的东西</p>
+                                <p>在互联网上真正留下自己的一点足迹</p>
+                                <p>正经人谁写日记啊~<br>巧了，我不是正经人🤐</p>
+                                <h1 id="小站足迹"><a href="#小站足迹" class="headerlink" title="小站足迹"></a>小站足迹</h1>
+                                <ul>
+                                    <li><p>2021-9-5</p>
+                                        <blockquote><p>使用SSM搭建一个前后台完整的博客系统并部署上线，之前的静态博客废弃</p></blockquote>
+                                    </li>
+                                    <li><p>2021-7-12</p>
+                                        <blockquote><p>将博客转移至私有仓库以提升安全性</p></blockquote>
+                                    </li>
+                                    <li><p>2021-4-11</p>
+                                        <blockquote><p>借助<a target="_blank" rel="noopener"
+                                                            href="https://vercel.com/tars-knock">vercel</a>进行加速，并升级为HTTPS
+                                        </p></blockquote>
+                                    </li>
+                                    <li><p>2021-3-18</p>
+                                        <blockquote><p>为小站购入域名<a href="http://www.tars-knock.cn/">www.Tars-knock.cn</a>
+                                        </p></blockquote>
+                                    </li>
+                                    <li><p>2021-3-16</p>
+                                        <blockquote><p>引入<a target="_blank" rel="noopener"
+                                                            href="https://github.com/fluid-dev/hexo-theme-fluid">Fluid主题</a>，完善图片、评论等功能
+                                        </p></blockquote>
+                                    </li>
+                                    <li><p>2021-3-15</p>
+                                        <blockquote><p>基于Hexo框架在githubio页面部署出雏形</p></blockquote>
+                                    </li>
+                                </ul>
+                                <h1 id="感谢"><a href="#感谢" class="感谢" title="感谢"></a>感谢</h1>
+                                <p>特别感谢：<a target="_blank" rel="noopener"
+                                           href="https://pandao.github.io/editor.md/">editor.md 项目</a>
+                                    ，<a target="_blank" rel="noopener"
+                                        href="https://www.dropzonejs.com/">dropzone 项目</a>
+                                    ，<a target="_blank" rel="noopener"
+                                           href="https://github.com/caozongpeng/SpringBootBlog">SpringBootBlog 项目</a>
+                                    ，<a target="_blank" rel="noopener"
+                                        href="https://github.com/mazipan/login-page-css">login-page-css 项目</a>
+                                    ，<a target="_blank" rel="noopener"
+                                        href="https://github.com/fluid-dev/hexo-theme-fluid">hexo-theme-fluid 项目</a>
+                                    提供前端支持
+                                </p>
+                                <h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1>
+                                <p>感谢花时间阅读我的博客，希望有些内容对你有帮助！祝生活愉快！</p></div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a id="scroll-top-button" href="#" role="button"><i class="iconfont icon-arrowup" aria-hidden="true"></i></a>
+</main>
+<div id="foot" th:include="com/footer :: common_foot"></div>
+
+<!--<script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>-->
+<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css">-->
+<!--<script>NProgress.configure({-->
+<!--    showSpinner: !1,-->
+<!--    trickleSpeed: 100-->
+<!--}), NProgress.start(), window.addEventListener("load", (function () {-->
+<!--    NProgress.done()-->
+<!--}))</script>-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
+<script th:src="@{/static/indexAndLogin/js/events.js}"></script>
+<script th:src="@{/static/indexAndLogin/js/plugins.js}"></script>
+<script th:src="@{/static/indexAndLogin/js/img-lazyload.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer th:src="@{/static/indexAndLogin/js/leancloud.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+<script>!function (t, i) {
+    (0, Fluid.plugins.typing)(i.getElementById("subtitle").title)
+}(window, document)</script>
+<script src="/js/local-search.js"></script>
+<script>$("#local-search-input").on("click", (function () {
+    searchFunc("/local-search.xml", "local-search-input", "local-search-result")
+})), $("#modalSearch").on("shown.bs.modal", (function () {
+    $("#local-search-input").focus()
+}))</script>
+<script defer>var _hmt = _hmt || [];
+!function () {
+    var e = document.createElement("script");
+    e.src = "https://hm.baidu.com/hm.js?000c8623e418a244bb21d401c84cbfc3";
+    var t = document.getElementsByTagName("script")[0];
+    t.parentNode.insertBefore(e, t)
+}()</script>
+<script th:src="@{/static/indexAndLogin/js/boot.js}"></script>
+</body>
+</html>

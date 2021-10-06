@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tarsknock.dao.UserDao">
+
+    <resultMap id="UserResult" type="User">
+        <result property="id" column="user_id"/>
+        <result property="username" column="user_name"/>
+        <result property="password" column="password"/>
+        <result property="profile"  column="profile"/>
+        <result property="imageUrl" column="image_url"/>
+        <result property="email" column="email"/>
+    </resultMap>
+    <select id="getUserByUsername" parameterType="String" resultMap="UserResult">
+        select * from t_user where user_name = #{username}
+    </select>
+
+    <select id="findById" parameterType="Integer" resultType="User">
+        select user_id as id, user_name as username, profile, image_url as imageUrl, email
+        from t_user where user_id = #{id}
+    </select>
+
+    <insert id="add" keyProperty="user_id" parameterType="User">
+        insert into t_user(user_id, user_name, password, profile, image_url, email)
+        values (null, #{username}, #{password}, #{profile}, #{imageUrl}, #{email} )
+    </insert>
+</mapper>

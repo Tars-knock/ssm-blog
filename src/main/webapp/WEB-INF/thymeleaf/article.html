@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${blog.title}+' - Tars Blog'">Title</title>
+
+    <link rel="icon" th:href="@{/static/indexAndLogin/img/favicon.png}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+    <link rel="stylesheet" th:href="@{/static/indexAndLogin/css/main.css}">
+    <link rel="stylesheet" th:href="@{/static/admin/editormd/css/editormd.preview.css}" />
+    <link th:href="@{/static/indexAndLogin/css/comment.css}" rel="stylesheet" type="text/css"/>
+    <script id="fluid-configs">
+        var Fluid = window.Fluid || {},
+            CONFIG = {
+                hostname: "www.tars-knock.cn",
+                root: "/",
+                version: "1.8.10",
+                typing: {
+                    enable: !0,
+                    typeSpeed: 70,
+                    cursorChar: "_",
+                    loop: !1
+                },
+                anchorjs: {
+                    enable: !0,
+                    element: "h1,h2,h3,h4,h5,h6",
+                    placement: "right",
+                    visible: "hover",
+                    icon: ""
+                },
+                progressbar: {
+                    enable: !0,
+                    height_px: 3,
+                    color: "#29d",
+                    options: {
+                        showSpinner: !1,
+                        trickleSpeed: 100
+                    }
+                },
+                copy_btn: !0,
+                image_zoom: {
+                    enable: !0
+                },
+                toc: {
+                    enable: !0,
+                    headingSelector: "h1,h2,h3,h4,h5,h6",
+                    collapseDepth: 0
+                },
+                lazyload: {
+                    enable: !0,
+                    loading_img: "static/indexAndLogin/img/loading.gif",
+                    onlypost: !1,
+                    offset_factor: 2
+                },
+                web_analytics: {
+                    baidu: "000c8623e418a244bb21d401c84cbfc3",
+                    leancloud: {
+                        app_id: "zldqPvhiQPhi7OHlqIQKsssf-gzGzoHsz",
+                        app_key: "seqt5G6b8y8z6p0zo03uR31L",
+                        server_url: "https://zldqpvhi.lc-cn-n1-shared.com"
+                    }
+                }
+            }
+    </script>
+    <script th:src="@{/static/indexAndLogin/js/utils.js}"></script>
+    <script th:src="@{/static/indexAndLogin/js/color-schema.js}"></script>
+    <script th:src="@{/static/indexAndLogin/js/jquery.min.js}"></script>
+    <script th:src="@{/static/admin/editormd/src/editormd.js}"></script>
+    <script th:src="@{/static/admin/editormd/lib/marked.min.js}"></script>
+    <script th:src="@{/static/admin/editormd/lib/prettify.min.js}"></script>
+
+
+</head>
+<header style="height:60vh">
+    <div id="head" th:include="com/header :: common_head"></div>
+
+
+
+    <div class="banner" id="banner" parallax="true" style="background:url(../static/indexAndLogin/img/sfln.jpg) no-repeat center center;
+    background-size:cover">
+<!--    <div class="banner" id="banner" parallax="true" style="background: rgba(0, 0, 0, 0) url(../static/indexAndLogin/img/sfln.jpg) no-repeat scroll center center / cover; transform: translate3d(0px, 0px, 0px);">-->
+
+        <div class="full-bg-img">
+            <div class="mask flex-center" style="background-color:rgba(0,0,0,.3)">
+                <div class="page-header text-center fade-in-up"><span class="h2" id="subtitle" th:title="${blog.title}"></span>
+                    <div class="mt-3">
+                        <span class="post-meta">
+                            <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                            <time datetime="${blog.releaseDateStr}" pubdate th:text="${blog.releaseDateStr}"></time>
+                        </span>
+                    </div>
+                    <div class="mt-1">
+                        <span class="post-meta mr-2">
+                            <i id="length" class="iconfont icon-chart" th:text="${#strings.length(blog.content)}+'字'"></i>
+<!--                            TODO: 这里调方法调的对么-->
+                        </span>
+                        <span class="post-meta mr-2">
+                            <i class="iconfont icon-eye" aria-hidden="true"></i>
+                            <i class="iconfont eye" th:text="${blog.clickHit}"></i>
+                            </span>                            次</span>
+
+                        </span>
+<!--                        <span id="leancloud-page-views-container" class="post-meta" style="display:none">-->
+
+<!--                            <span id="leancloud-page-views">-->
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</header>
+<body>
+<!--    正文部分-->
+    <main>
+        <div id="1" class="container-fluid nopadding-x">
+            <div id="2" class="row nomargin-x">
+                <div class="d-none d-lg-block col-lg-2"></div>
+                <div id="3" class="col-lg-8 nopadding-x-md">
+                    <div class="container nopadding-x-md" id="board-ctn">
+                        <div class="py-5" id="board">
+                            <article class="post-content mx-auto" id="test-markdown-view">
+                                <p class="note note-info" th:text="'本文最后更新于'+${blog.updateDateStr}"></p>
+                                <!-- Server-side output Markdown text -->
+                                <textarea id="markdownText" style="display:none;" th:text="${blog.content}">#Editor.md</textarea>
+
+
+
+                            </article>
+
+                            <!--                                文章结尾其他信息-->
+                            <div  class="post-content mb-3">
+                                <div class="post-meta mb-3">
+                                    <div class="post-meta mr-3"><i class="iconfont icon-category"></i> <a class="hover-with-bg" href="/categories/%E6%9C%BA%E6%A2%B0%E8%AE%BE%E8%AE%A1/" th:text="${blog.blogType.typeName}"></a></div>
+                                </div>
+                                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                                <div class="post-prevnext">
+                                    <th:block th:if="${lastBlogId}">
+                                        <article class="post-prev col-6"><a th:href="@{'/article/'+${lastBlogId}}"><i class="iconfont icon-arrowleft"></i> <span class="hidden-mobile" th:text="${lastBlogTitle}">pc上一篇</span> <span class="visible-mobile">上一篇</span></a></article>
+                                    </th:block>
+                                    <th:block th:if="${nextBlogId}">
+                                        <article class="post-next col-6"><a th:href="@{'/article/'+${nextBlogId}}"><span class="hidden-mobile" th:text="${nextBlogTitle}">pc下一篇</span> <span class="visible-mobile">下一篇</span> <i class="iconfont icon-arrowright"></i></a></article>
+                                    </th:block>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!--                            评论区-->
+                        <article class="comments" id="commentsDiv">
+                            <div class="comments" id="comments" style="opacity: 1; display: block;">
+                                <div id="comments-content" class="segment">
+                                    <h3 class="dividing">评论</h3>
+                                    <th:block th:if="${commentList}">
+                                        <div th:each="comment : ${commentList}" class="comment">
+                                            <a class="avatar">
+                                                <img th:src="@{'/'+${comment.user.imageUrl}}">
+                                            </a>
+                                            <div class="content">
+                                                <a  target="_blank" class="author">
+                                                    <span th:text="${comment.user.username}"></span>
+                                                </a>
+                                                <div class="metadata">
+                                                    <span class="date" th:text="${comment.dateStr}"></span>
+                                                </div>
+                                                <div class="text" th:text="${comment.content}"></div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+                                </div>
+                                <div class="comment-form">
+                                    <input type="hidden" name="coid" id="coid">
+                                    <input type="hidden" name="cid" id="cid" th:value="${blog.id}">
+                                    <th:block th:if="${session.currentUser}">
+                                        <input type="hidden" name="user" id="user" th:value="${session.currentUser.id}">
+                                    </th:block>
+                                    <th:block th:unless="${session.currentUser}">
+                                        <input type="hidden" name="user" id="user">
+                                    </th:block>
+                                    <!--                                        <input type="hidden" name="_csrf_token" id="csrf_token" th:value="${_csrf_token}">-->
+                                    <div class="field">
+                                        <textarea id="comment-content" required="required" class="form-control" name="content" placeholder="登录后输入评论信息..." cols="30" rows="7"></textarea>
+                                    </div>
+<!--                                    <div class="fields">-->
+<!--                                        <div class="field">-->
+<!--                                            <input id="nickname" required="required" type="text" name="nickname" placeholder="姓名">-->
+<!--                                        </div>-->
+<!--                                        <div class="field">-->
+<!--                                            <input id="email" required="required" type="email" name="email" placeholder="邮箱">-->
+<!--                                        </div>-->
+<!--                                        <div class="field">-->
+<!--                                            <input id="url" type="url" name="url" placeholder="网址">-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <div class="comment-button">
+                                        <button onclick="commentClick()">发布</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </article>
+
+
+
+                    </div>
+                </div>
+                <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+                    <div id="toc" >
+                        <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+                        <div class="toc-body" id="toc-body"></div>
+                    </div>
+                </div>
+            </div>
+<!--            <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">-->
+
+        </div><a id="scroll-top-button" href="#" role="button"><i class="iconfont icon-arrowup" aria-hidden="true"></i></a>
+    </main>
+
+<!--TODO: 目录还没有写；已写-->
+    <div id="foot" th:include="com/footer :: common_foot"></div>
+
+
+    <script type="text/javascript">
+        $(function() {
+            var testView = editormd.markdownToHTML("test-markdown-view", {
+                // markdown : "[TOC]/n"+$("#markdownText").val(), // Also, you can dynamic set Markdown text
+                markdown : $("#markdownText").val(), // Also, you can dynamic set Markdown text
+                // markdown : "[TOC]"+$("#1 #2 #3 #board-ctn #board #test-markdown-view #markdownText").val, // Also, you can dynamic set Markdown text
+                //htmlDecode : true,  // Enable / disable HTML tag encode.
+                htmlDecode : "iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+                toc : "true",
+                tocStartLevel : 2,
+                tocContainer : "#toc-ctn #toc",
+                tocDropdown          : false,
+            });
+            // console.log(testView);
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
+    <script th:src="@{/static/indexAndLogin/js/events.js}"></script>
+    <script th:src="@{/static/indexAndLogin/js/plugins.js}"></script>
+    <script th:src="@{/static/indexAndLogin/js/img-lazyload.js}"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+    <script th:src="@{/static/indexAndLogin/js/boot.js}"></script>
+    <script defer th:src="@{/static/indexAndLogin/js/leancloud.js}"></script>
+    <script>
+        ! function(t, i) {
+            (0, Fluid.plugins.typing)(i.getElementById("subtitle").title)
+        }(window, document)
+    </script>
+    <script defer>
+        var _hmt = _hmt || [];
+        ! function() {
+            var e = document.createElement("script");
+            e.src = "https://hm.baidu.com/hm.js?000c8623e418a244bb21d401c84cbfc3";
+            var t = document.getElementsByTagName("script")[0];
+            t.parentNode.insertBefore(e, t)
+        }()
+    </script>
+
+    <script>
+        function commentClick() {
+            var content = $("#comment-content").val();
+            var author = $("#user").val();
+            // var email = $("#email").val();
+            // var url = $("#url").val();
+            var coid = $("#coid").val();
+            var cid = $("#cid").val();
+            var csrf_token = $("#csrf_token").val();
+
+            if (null == content || "" == content || undefined == content) {
+                alert("内容不能为空");
+                return false;
+            }
+            if (null == author || "" == author || undefined == author) {
+                alert("请先登录再发表评论");
+                return false;
+            }
+            // if (null == email || "" == email || undefined == email) {
+            //     alert("邮箱不能为空");
+            //     return false;
+            // }
+
+            var data = {
+                "content": content,
+                "user.id":author,
+                // "email": email,
+                // "url": url,
+                // "csrf_token": csrf_token,
+                // "id": coid,
+                "blog.id": cid,
+            };
+
+            console.log(data);
+            $.ajax({
+                type: 'post',
+                url: 'comment',
+                data: data,
+                async: false,
+                dataType: 'json',
+                success: function (result) {
+                    // $('#comment-form input[name=coid]').val('');
+                    if (result && result.code == 'success') {
+                        alert("评论已提交至后台审核!");
+                        window.location.reload();
+                    } else {
+                        if (result.msg) {
+                            alert(result.msg);
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+
+<!--&lt;!&ndash;                                <script type="text/javascript">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    var len = ${'#length'}.val();&ndash;&gt;-->
+<!--&lt;!&ndash;                                    function getLength(str){&ndash;&gt;-->
+<!--&lt;!&ndash;                                        var length = str.length;&ndash;&gt;-->
+<!--&lt;!&ndash;                                        if(length>=1000){&ndash;&gt;-->
+<!--&lt;!&ndash;                                            length = length/1000;&ndash;&gt;-->
+<!--&lt;!&ndash;                                            str = length.toString().slice(0,2)+"k字";&ndash;&gt;-->
+<!--&lt;!&ndash;                                            ${'#length'}.val(str);&ndash;&gt;-->
+<!--&lt;!&ndash;                                        }&ndash;&gt;-->
+<!--&lt;!&ndash;                                        else{&ndash;&gt;-->
+<!--&lt;!&ndash;                                            str = length.toString()+"字";&ndash;&gt;-->
+<!--&lt;!&ndash;                                            ${'#length'}.val(str);&ndash;&gt;-->
+<!--&lt;!&ndash;                                        }&ndash;&gt;-->
+<!--&lt;!&ndash;                                    }&ndash;&gt;-->
+<!--&lt;!&ndash;                                </script>&ndash;&gt;-->
+</html>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tarsknock.dao.BlogDao">
+
+    <resultMap id="BlogResult" type="Blog">
+        <result property="id" column="article_id"/>
+        <result property="title" column="title"/>
+        <result property="statu" column="statu"/>
+        <result property="description" column="description"/>
+        <result property="content" column="content"/>
+        <result property="releaseDate" column="release_date"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="clickHit" column="click_hit"/>
+        <result property="replyHit" column="reply_hit"/>
+        <result property="keyWord" column="key_word"/>
+        <association property="blogType" column="blogtype_id" select="cn.tarsknock.dao.BlogTypeDao.findById"/>
+    </resultMap>
+
+    <select id="countList" parameterType="String" resultMap="BlogResult">
+        select date_format(release_date, '%Y年%m月%e日') as releaseDateStr, date_format(update_date, '%Y年%m月%e日') as updateDateStr
+        from t_blog
+        order by date_format(release_date, '%Y年%m月%e日') desc
+    </select>
+
+    <select id="findById" parameterType="Integer" resultMap="BlogResult">
+        select article_id, title, statu, description, content, date_format(release_date, '%Y年%m月%e日') as releaseDateStr, date_format(update_date, '%Y年%m月%e日') as updateDateStr, click_hit, reply_hit, type_id as blogtype_id, key_word
+        from t_blog where article_id = #{id}
+    </select>
+
+    <select id="list" parameterType="Map" resultMap="BlogResult">
+        select article_id, title, statu, description, content, date_format(release_date, '%Y年%m月%e日') as releaseDateStr, date_format(update_date, '%Y年%m月%e日') as updateDateStr, click_hit, reply_hit, type_id as blogtype_id, key_word
+        <!--        select article_id as id, title, statu, description, content, date_format(release_date, '%Y年%m月%e日') as releaseDateStr, date_format(update_date, '%Y年%m月%e日') as updateDateStr, click_hit as clickHit, reply_hit as replyHit, key_word as keyWord-->
+        from t_blog
+        <where>
+            <if test="title!=null and title!=''">
+                and title=#{title}
+            </if>
+            <if test="statu!=null and statu!=''">
+                and statu=#{statu}
+            </if>
+            <if test="typeId!=null">
+                and type_id=#{typeId}
+            </if>
+            <if test="releaseDateStr!=null and releaseDateStr!=''">
+                and date_format(release_date,'%Y年%m月%e日')=#{releaseDateStr}
+            </if>
+            <if test="updateDateStr!=null and updateDateStr!=''">
+                and date_format(update_date,'%Y年%m月%e日')=#{updateDateStr}
+            </if>
+        </where>
+        order by release_date desc
+        <if test="start!=null and size!=null">
+            LIMIT #{start},#{size}
+        </if>
+    </select>
+
+    <select id="getTotal" parameterType="Map" resultType="Long">
+        select count(*) from t_blog
+        <where>
+            <if test="title!=null and title!=''">
+                and title=#{title}
+            </if>
+            <if test="statu!=null and statu!=''">
+                and statu=#{statu}
+            </if>
+            <if test="typeId!=null">
+                and type_id=#{typeId}
+            </if>
+            <if test="releaseDateStr!=null and releaseDateStr!=''">
+                and date_format(release_date,'%Y年%m月%e日')=#{releaseDateStr}
+            </if>
+            <if test="updateDateStr!=null and updateDateStr!=''">
+                and date_format(update_date,'%Y年%m月%e日')=#{updateDateStr}
+            </if>
+        </where>
+    </select>
+
+    <insert id="add" keyProperty="article_id" parameterType="Blog">
+        insert into t_blog(article_id, title, statu, description, content, release_date, update_date, click_hit, reply_hit, type_id, key_word)
+        values (null, #{title},#{statu}, #{description}, #{content}, now(), now(),0,0,#{blogType.id},#{keyWord})
+    </insert>
+
+<!--    <update id="updateContent " parameterType="Blog">-->
+<!--        &lt;!&ndash;        TODO:这里不能用 记得解决&ndash;&gt;-->
+<!--        update t_blog-->
+<!--        <set>-->
+<!--            <if test="title!=null and title!=''">-->
+<!--                title=#{title}-->
+<!--            </if>-->
+<!--            <if test="statu!=null and statu!=''">-->
+<!--                statu=#{statu}-->
+<!--            </if>-->
+<!--            <if test="description!=null and description!=''">-->
+<!--                description=#{description}-->
+<!--            </if>-->
+<!--            <if test="content!=null and content!=''">-->
+<!--                content=#{content}-->
+<!--            </if>-->
+<!--            <if test="updateDateStr!=null and updateDateStr!=''">-->
+<!--                update_date=now();-->
+<!--            </if>-->
+<!--            <if test="clickHit!=null">-->
+<!--                click_hit=#{clickHit}-->
+<!--            </if>-->
+<!--            <if test="blogType.id!=null">-->
+<!--                type_id=#{blogType.id}-->
+<!--            </if>-->
+<!--            <if test="keyWord!=null and keyWord!=''">-->
+<!--                key_word=#{keyWord}-->
+<!--            </if>-->
+<!--        </set>-->
+<!--        where article_id = #{id};-->
+<!--    </update>-->
+
+    <update id="updateReply" parameterType="Blog">
+        update t_blog
+        <set>
+            <if test="replyHit!=null">
+                reply_hit=#{replyHit},
+            </if>
+            <if test="clickHit!=null">
+                click_hit=#{clickHit},
+            </if>
+        </set>
+        where article_id = #{id};
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        delete from t_blog where article_id = #{id}
+    </delete>
+
+    <delete id="updateContent" parameterType="Blog">
+        update t_blog
+            <set>
+                <if test="title!=null and title!=''">
+                    title=#{title},
+                </if>
+                <if test="statu!=null and statu!=''">
+                    statu=#{statu},
+                </if>
+                <if test="description!=null and description!=''">
+                    description=#{description},
+                </if>
+                <if test="content!=null and content!=''">
+                    content=#{content},
+                </if>
+                <if test="updateDateStr!=null and updateDateStr!=''">
+                    update_date=now(),
+                </if>
+                <if test="blogType.id!=null">
+                    type_id=#{blogType.id},
+                </if>
+                <if test="keyWord!=null and keyWord!=''">
+                    key_word=#{keyWord},
+                </if>
+            </set>
+        where article_id = #{id}
+    </delete>
+
+    <select id="getLastBlog" parameterType="Integer" resultMap="BlogResult">
+        select * from t_blog where article_id&lt;#{id} order by article_id desc limit 1
+    </select>
+
+    <select id="getNextBlog" parameterType="Integer" resultMap="BlogResult">
+        select * from t_blog where article_id&lt;#{id} order by article_id limit 1
+    </select>
+
+</mapper>
