@@ -34,7 +34,7 @@
   - [editor.md ](https://pandao.github.io/editor.md/)	后台MD编辑器
   - [dropzone ](https://www.dropzonejs.com/)    文件上传
   - [SpringBootBlog ](https://github.com/caozongpeng/SpringBootBlog)    借鉴后台前端设计
-- [login-page-css ](https://github.com/mazipan/login-page-css)   登录页面
+  - [login-page-css ](https://github.com/mazipan/login-page-css)   登录页面
   - [hexo-theme-fluid ](https://github.com/fluid-dev/hexo-theme-fluid)   借鉴前端设计
   
 ## 部署示例
