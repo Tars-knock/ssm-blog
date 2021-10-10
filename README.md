@@ -39,7 +39,7 @@
   
 ## 部署示例
 
-  [Tars blog](tars-knock.cn)
+  [Tars blog](http://tars-knock.cn)
 
 
 
