@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="robots" content="noindex">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用户登陆 -- Tars Blog</title>
+	<link rel="icon" th:href="@{/indexAndLogin/img/favicon.png}">
+<!--	<link rel="apple-touch-icon" sizes="180x180" href="https://mazipan.github.io/login-page-css/favicon/apple-touch-icon.png">-->
+<!--	<link rel="icon" type="image/png" sizes="32x32" href="https://mazipan.github.io/login-page-css/favicon/favicon-32x32.png">-->
+<!--	<link rel="icon" type="image/png" sizes="16x16" href="https://mazipan.github.io/login-page-css/favicon/favicon-16x16.png">-->
+<!--	<link rel="manifest" href="https://mazipan.github.io/login-page-css/manifest.json" />-->
+
+	<meta name="msapplication-TileColor" content="#5f6368" />
+	<meta name="theme-color" content="#5f6368" />
+	<link rel="manifest" href="https://mazipan.github.io/login-page-css/manifest.json">
+
+	<link rel="stylesheet" th:href="@{/indexAndLogin/css/login-normalize.css}">
+	<link rel="stylesheet" th:href="@{/indexAndLogin/css/login-additional.css}">
+	<link rel="stylesheet" th:href="@{/indexAndLogin/css/login-style.css}">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+	<div class="bg-img content-body">
+		<div class="form-wrapper">
+			<div class="logo">
+				<img src="static/indexAndLogin/img/favicon.png" alt="Logo">
+			</div>
+			<h1 class="heading text-center">用户登录</h1>
+			<h3 class="sub-heading text-center">登录后即可与博主激情互动</h3>
+
+			<form method="post" onsubmit="return check()">
+				<input type="hidden" name="from" th:value="${from}">
+				<div class="field">
+					<input id="username" type="text" name="username" class="input" placeholder=" " th:value= "${user==null}?'':${user.username}">
+					<label for="email" class="label">用户名</label>
+				</div>
+				<br>
+				<div class="field">
+					<input id="password" type="password" name="password" class="input" placeholder=" " th:value= "${user==null}?'':${user.password}">
+					<label for="password" class="label">密码</label>
+				</div>
+
+				<div class="forgot-button">
+					<a href="#">忘记账号？</a>
+				</div>
+
+<!--				<div class="description-text">-->
+<!--					<p>可以使用参观账号 name:visitor password:password 进入 <a th:href="@{/admin}">管理后台</a>进行参观(只能参观哦)-->
+<!--					</p>-->
+<!--				</div>-->
+
+				<div class="form-action">
+					<a th:href="@{/register}" class="btn secondary">注册账号</a>
+					<span ><font color="red" id="error"/></span>
+					<span th:text="${errorInfo}"/>
+					<button type="submit" class="btn primary">登录</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- ADDITIONAL CODE -- start YOU MIGHT NOT NEEDED -->
+	<!-- <footer>
+		<a href="/login-page-css/">
+			Back to Home
+		</a>
+		<span class="author">
+			Crafted with ❤️ by <a href="https://github.com/josprima" rel="noopener noreferrer" target="_blank">@Josprima</a>,
+			© 2020
+		</span>
+		<a href="https://github.com/mazipan/login-page-css" rel="noopener noreferrer" target="_blank">
+			Github Repo
+		</a>
+	</footer> -->
+	<!-- ADDITIONAL CODE -- end YOU MIGHT NOT NEEDED -->
+<script type="text/javascript">
+	var username = document.getElementById('username');
+	var password = document.getElementById('password');
+	function check(){
+		if(username.value===""){
+			// alert("请输入用户名");
+			document.getElementById("error").textContent="请输入用户名";
+			return false;
+		}else if(password.value===""){
+			// alert("请输入密码");
+			document.getElementById("error").textContent="请输入密码";
+			return false;
+		}
+	}
+</script>
+</body>
+
+</html>

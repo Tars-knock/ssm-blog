@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <footer th:fragment="common_foot">
+
+        <div class="text-center mt-5 py-3">
+                <div class="footer-content">
+                    <div><span id="timeDate">载入天数...</span>
+                        <script th:src="@{/indexAndLogin/js/duration.js}"></script>
+                    </div>
+                </div>
+                <div class="statistics"><span id="leancloud-site-pv-container" style="display:none">总访问量 <span
+                        id="leancloud-site-pv"></span> 次 </span><span id="leancloud-site-uv-container" style="display:none">总访客数 <span id="leancloud-site-uv"></span> 人</span>
+                </div>
+        </div>
+
+
+
+    </footer>
+</head>
+</html>

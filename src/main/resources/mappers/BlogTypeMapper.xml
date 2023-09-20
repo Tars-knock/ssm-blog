@@ -12,7 +12,7 @@
     </resultMap>
     <select id="countList" parameterType="String" resultMap="BlogTypeResult">
         select t2.blogtype_id, t2.type_name, count(t1.article_id) as blogCount from t_blog t1
-        right join t_blogtype t2 on t1.type_id=t2.blogtype_id group by t2.type_name
+        right join t_blogtype t2 on t1.type_id=t2.blogtype_id group by t2.blogtype_id, t2.type_name
         order by t2.order_no
     </select>
 

@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <style type="text/css">
+
+        /*.round_image{*/
+        /*    !*margin-top: 100px;*!*/
+        /*    width:1.25rem;*/
+        /*    height:1.25rem;*/
+        /*    border-radius:20px;*/
+        /*}*/
+        /*.username {*/
+        /*    color: #FFFFFF;*/
+        /*    font-size: 1.25rem;*/
+        /*}*/
+    </style>
+
+
+
+
+
+    <footer th:fragment="common_head">
+        <!--<div style="height:100vh">-->
+        <div>
+            <nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+                <div class="container"><a class="navbar-brand" th:href="@{/static}">&nbsp;<strong>Tars blog</strong>&nbsp;</a>
+                    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <div class="animated-icon"><span></span><span></span><span></span></div>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto text-center">
+                            <th:block th:if="${session.currentUser==null}">
+                                <li class="nav-item"><a class="nav-link" th:href="@{/login}"><i class="iconfont icon-users"></i> 登录</a>
+                                </li>
+                            </th:block>
+                            <th:block th:if="${session.currentUser!=null}">
+                                <li class="nav-item dropdown"><a class="nav-link" th:href="@{#}">
+                                    <img th:src="@{/static} + ${session.currentUser.imageUrl}" class="round_image" width="20" height="20">
+                                    <span th:text="${session.currentUser.username}" class="username"></span>
+                                </a></li>
+<!--                                <li class="nav-item"><a class="nav-link" th:href="@{/}"><i class="iconfont icon-friends"></i>首页</a>-->
+<!--                                </li>-->
+                            </th:block>
+                            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" target="_self"
+                                                             role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                             aria-expanded="false"><i
+                                    class="iconfont icon-books"></i> 文章</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a class="dropdown-item"
+                                                                                               th:href="@{/archives/}"><i
+                                        class="iconfont icon-archive-fill"></i> 归档 </a><a class="dropdown-item"
+                                                                                          th:href="@{/categories/}"><i
+                                        class="iconfont icon-category-fill"></i> 分类 </a>
+<!--                                    <a class="dropdown-item"-->
+<!--                                                                                           th:href="@{/tags/}"><i-->
+<!--                                        class="iconfont icon-tags-fill"></i> 标签</a>-->
+                                </div>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/links/}"><i
+                                    class="iconfont icon-link-fill"></i>
+                                友链</a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/about/}"><i
+                                    class="iconfont icon-user-fill"></i>
+                                关于</a></li>
+                            <li class="nav-item" id="search-btn"><a class="nav-link" target="_self" data-toggle="modal"
+                                                                    data-target="#modalSearch">&nbsp;<i
+                                    class="iconfont icon-search"></i>&nbsp;</a></li>
+                            <li class="nav-item" id="color-toggle-btn"><a class="nav-link" target="_self">&nbsp;<i
+                                    class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </footer>
+</head>
+</html>

@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: ******
+    username: ****
+    password: *****
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+shiro:
+  session-management:
+    global-session-timeout: 18000000 # 会话超时时间，单位毫秒
+    session-validation-interval: 3600000 # 会话验证定时器间隔，单位毫秒

@@ -1,5 +1,6 @@
 package cn.tarsknock.controller.admin;
 
+import cn.tarsknock.entity.User;
 import cn.tarsknock.service.BlogService;
 import cn.tarsknock.service.CommentService;
 import cn.tarsknock.service.LinkService;
@@ -29,8 +30,8 @@ public class AdminController {
     @RequiresRoles("admin")
     @RequestMapping(path = "/admin")
     public String adminIndex(HttpServletRequest request){
-
-        if(request.getSession().getAttribute("currentUser") == null){
+        User curUser = (User) request.getSession().getAttribute("currentUser");
+        if(curUser == null ||( !curUser.getUsername().equals("Tars-knock") && !curUser.getUsername().equals("visitor"))){
             return "redirect:/login";
         }
 
